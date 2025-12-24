@@ -1,6 +1,6 @@
-# Orderly Broker UI Template
+# Shard DEX UI
 
-This template provides a quick way to set up a customized trading UI for Orderly Network brokers, built with Remix and deployable on Vercel.
+This template provides a quick way to set up a customized trading UI for Shard DEX, built with Remix and deployable on Vercel.
 
 🔗 [Live Demo](https://broker-template-seven.vercel.app/)
 
@@ -59,10 +59,9 @@ Edit `app/utils/config.tsx` to customize your UI:
 - **Logos**: Replace the main and secondary logos in the `appIcons` section
 - **PnL Sharing**: Customize the PnL poster backgrounds and colors in `sharePnLConfig`
 
-Required assets:
 - Place your logos in the `public` directory:
-  - Main logo: `public/orderly-logo.svg`
-  - Secondary logo: `public/orderly-logo-secondary.svg`
+  - Main logo: `public/shard.svg`
+  - Secondary logo: `public/shard-logo-secondary.svg`
   - Favicon: `public/favicon.webp`
 - PnL sharing backgrounds: `public/pnl/poster_bg_[1-4].png`
 
@@ -97,5 +96,5 @@ For custom domain setup:
 
 - [Orderly JS SDK Documentation](https://github.com/OrderlyNetwork/js-sdk)
 - [Orderly Network Documentation](https://orderly.network/docs/sdks)
-- [Storybook Theme Editor](https://storybook.orderly.network/?path=/story/package-trading-tradingpage--page)
+- [Shard DEX Storybook](https://storybook.orderly.network/?path=/story/package-trading-tradingpage--page)
 

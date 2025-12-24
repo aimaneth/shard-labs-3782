@@ -7,6 +7,114 @@
 @tailwind utilities;
 
 /* hide trading rewards on mobile */
-.oui-portfolio-page .oui-box.oui-flex.oui-flex-nowrap > div:nth-child(2).oui-box.oui-flex.oui-justify-start.oui-flex-nowrap.oui-relative {
+.oui-portfolio-page .oui-box.oui-flex.oui-flex-nowrap>div:nth-child(2).oui-box.oui-flex.oui-justify-start.oui-flex-nowrap.oui-relative {
   display: none;
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-wrap {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  flex: 1 !important;
+  /* Allow carousel to take up remaining space */
+  min-width: 0;
+  /* Allow it to shrink if needed, though it's huge */
+}
+
+.ticker-content {
+  display: inline-block;
+  animation: ticker 300s linear infinite;
+  padding-left: 100%;
+  vertical-align: middle;
+  line-height: normal;
+  /* Reset line-height to prevent vertical shifts */
+}
+
+.ticker-wrap:hover .ticker-content {
+  animation-play-state: paused;
+}
+
+.ticker-item {
+  display: inline-block;
+  padding: 0 4rem;
+  vertical-align: middle;
+}
+
+/* EXPAND and LOCK "Join our community" layout */
+.oui-footer .oui-box.oui-flex-row:has(> span:first-child) {
+  flex: 0 0 auto !important;
+  /* NEVER SHRINK */
+  min-width: 250px !important;
+  /* Force expansion */
+  white-space: nowrap !important;
+  gap: 12px !important;
+  align-items: center !important;
+  display: flex !important;
+}
+
+/* Ensure the text itself never wraps */
+.oui-footer .oui-box.oui-flex-row:has(> span:first-child)>span {
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+/* Prevent the icon container from shrinking */
+.oui-footer .oui-box.oui-flex-row:has(> span:first-child)>.oui-flex-row {
+  flex-shrink: 0 !important;
+  display: flex !important;
+}
+
+/* Hide legacy footer components */
+.oui-footer-operational,
+.oui-footer-powered-by,
+.oui-footer-status,
+[class*="footer_status"],
+[class*="footer_operational"],
+[class*="footer_poweredBy"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* 
+  GLOBAL NAVBAR OVERRIDES
+  Ensures the Orderly Scaffold top navbar has a solid, full-width background.
+*/
+.oui-scaffold-header,
+header.oui-main-nav,
+.oui-main-nav {
+  height: 48px !important;
+  min-height: 48px !important;
+  background: #0d0d12 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Cleaned up global styles - Shard utils moved to home.css */
+
+/* 
+  HOME PAGE HEADER HACK
+  When HomeNavbar is active, it adds 'shard-home-page-body' to the body.
+  We use this to NUKE the default scaffold header so it doesn't show up behind our custom portal navbar.
+*/
+body.shard-home-page-body .oui-scaffold-header,
+body.shard-home-page-body nav.oui-main-nav,
+body.shard-home-page-body header,
+body.shard-home-page-body [class*="scaffold-header"] {
+  display: none !important;
+  height: 0 !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
 }

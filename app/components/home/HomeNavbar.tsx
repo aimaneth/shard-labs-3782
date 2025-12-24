@@ -1,0 +1,120 @@
+import { FC, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Button, Flex, useScreen, cn } from "@orderly.network/ui";
+import CustomLeftNav from "@/components/CustomLeftNav";
+import { withBasePath } from "@/utils/base-path";
+
+interface HomeNavbarProps {
+    components: any;
+    socials: {
+        twitter?: string;
+        discord?: string;
+        telegram?: string;
+    };
+    menus: any[];
+    customMenus: any[];
+}
+
+export const HomeNavbar: FC<HomeNavbarProps> = ({ components, socials, menus, customMenus }) => {
+    const { isMobile } = useScreen();
+    const navigate = useNavigate();
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 10) {
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        // Add class to body to hide default header via global CSS
+        document.body.classList.add("shard-home-page-body");
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            document.body.classList.remove("shard-home-page-body");
+        };
+    }, []);
+
+    // Use Portal to escape stacking contexts found in the app layout
+    return createPortal(
+        <Flex
+            justify="between"
+            className="oui-w-full home-navbar-standalone"
+            style={{
+                position: "fixed",
+                top: 0,
+                left: 0,
+                right: 0,
+                zIndex: 9999,
+                padding: "0 1.5rem",
+                height: "64px",
+                background: isScrolled
+                    ? "rgba(5, 5, 8, 0.95)" // Scrolled: Dark Glass (Mobile & Desktop)
+                    : "transparent", // Top: Transparent
+                backdropFilter: isScrolled
+                    ? "blur(20px)"
+                    : "none",
+                border: "none",
+                borderBottom: isScrolled ? "1px solid rgba(255,255,255,0.05)" : "none",
+                transition: "all 0.3s ease",
+            }}
+        >
+            <Flex itemAlign="center" className="oui-gap-3 md:oui-gap-8">
+                {isMobile && (
+                    <CustomLeftNav
+                        menus={menus}
+                        externalLinks={customMenus}
+                        socials={socials}
+                        className="oui-text-white"
+                    />
+                )}
+                <Link to="/" className="oui-flex-shrink-0">
+                    {isMobile ? (
+                        <img
+                            src={withBasePath("/shard-logo-secondary.svg")}
+                            alt="logo"
+                            style={{ height: "28px", display: "block", width: "auto" }}
+                        />
+                    ) : (
+                        <img
+                            src={withBasePath("/shard.svg")}
+                            alt="logo"
+                            style={{ height: "32px", display: "block", width: "auto" }}
+                        />
+                    )}
+                </Link>
+                {/* Restore Navigation Links */}
+                <div className="home-nav-links oui-hidden md:oui-flex oui-gap-1">
+                    {components.mainNav}
+                </div>
+            </Flex>
+            <Button
+                size="sm"
+                className="shard-btn-primary"
+                style={{
+                    background: "#403dff",
+                    border: "none",
+                    color: "white",
+                    fontWeight: 600,
+                    textTransform: "uppercase",
+                    fontSize: "0.75rem",
+                    padding: "0 1.5rem",
+                    height: "36px",
+                    borderRadius: "9999px",
+                    boxShadow: "0 0 15px rgba(64, 61, 255, 0.4)",
+                    transition: "all 0.2s ease",
+                }}
+                onClick={() => navigate("/perp/PERP_ETH_USDC")}
+            >
+                Start Trading
+            </Button>
+        </Flex>,
+        document.body
+    );
+};

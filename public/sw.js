@@ -1,4 +1,4 @@
-let CACHE_NAME = 'orderly-dex-v1';
+let CACHE_NAME = 'shard-dex-v1';
 const CACHE_VERSION = 'v1';
 let cacheNameInitialized = false;
 
@@ -12,21 +12,21 @@ async function initializeCacheName() {
   try {
     const response = await fetch('/config.js');
     const configText = await response.text();
-    
+
     const jsonText = configText
       .replace(/window\.__RUNTIME_CONFIG__\s*=\s*/, '')
       .replace(/;$/, '')
       .trim();
-    
+
     const config = JSON.parse(jsonText);
-    const brokerId = config.VITE_ORDERLY_BROKER_ID || 'orderly';
-    
+    const brokerId = config.VITE_ORDERLY_BROKER_ID || 'shard';
+
     CACHE_NAME = `${brokerId}-dex-${CACHE_VERSION}`;
     cacheNameInitialized = true;
     console.log('Service Worker cache name:', CACHE_NAME);
   } catch (error) {
     console.warn('Failed to load config, using default cache name:', error);
-    CACHE_NAME = `orderly-dex-${CACHE_VERSION}`;
+    CACHE_NAME = `shard-dex-${CACHE_VERSION}`;
     cacheNameInitialized = true;
   }
 }
@@ -58,7 +58,7 @@ self.addEventListener('activate', (event) => {
                   .map((req) => cache.delete(req))
               );
             });
-          }).catch(() => {})
+          }).catch(() => { })
         ]);
       });
     })
@@ -83,13 +83,13 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  const isModuleRequest = /\.(js|mjs|ts)$/i.test(url.pathname) || 
-                          request.destination === 'script' ||
-                          request.destination === 'worker';
-  
-  const isHashedModule = isModuleRequest && 
-                         /\/assets\/.*-[A-Za-z0-9_-]{8,}\.(js|mjs)$/.test(url.pathname);
-  
+  const isModuleRequest = /\.(js|mjs|ts)$/i.test(url.pathname) ||
+    request.destination === 'script' ||
+    request.destination === 'worker';
+
+  const isHashedModule = isModuleRequest &&
+    /\/assets\/.*-[A-Za-z0-9_-]{8,}\.(js|mjs)$/.test(url.pathname);
+
   if (isModuleRequest && !isHashedModule) {
     return;
   }
@@ -119,7 +119,7 @@ self.addEventListener('fetch', (event) => {
         .then((response) => {
           if (response && response.status === 200 && response.type === 'basic') {
             const isStaticAsset = /\.(woff2?|png|jpg|jpeg|svg|webp|ico|css)$/i.test(url.pathname);
-            
+
             if (isStaticAsset) {
               const responseToCache = response.clone();
               caches.open(CACHE_NAME).then((cache) => {

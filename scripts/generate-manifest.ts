@@ -121,11 +121,11 @@ function generateManifest() {
   const startUrl = withBasePath("/", basePath);
 
   const manifest = {
-    name: config.VITE_APP_NAME || "Orderly DEX",
-    short_name: config.VITE_APP_NAME || "Orderly DEX",
+    name: config.VITE_APP_NAME || "Shard DEX",
+    short_name: config.VITE_APP_NAME || "Shard DEX",
     description:
       config.VITE_APP_DESCRIPTION ||
-      "A powerful perpetual trading DEX powered by Orderly Network",
+      "Shard DEX: Institutional-grade perpetual trading with lightning-fast execution, deep liquidity, and a sleek, professional interface.",
     start_url: startUrl,
     scope: basePath,
     display: "standalone",

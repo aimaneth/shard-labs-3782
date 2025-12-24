@@ -7,3 +7,8 @@ node_modules
 # SpecStory explanation file
 .specstory/.what-is-this.md
 /public/manifest.json
+
+.env
+.env.local
+.env.*.local
+.DS_Store

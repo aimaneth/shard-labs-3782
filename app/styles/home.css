@@ -1,0 +1,332 @@
+/* Scoped Home Page Styles */
+.shard-home-page {
+    /* Global reset for this scope */
+    --home-primary: #403dff;
+    --home-glass-bg: rgba(255, 255, 255, 0.03);
+    --home-glass-border: rgba(255, 255, 255, 0.08);
+
+    font-family: 'Outfit', 'Inter', sans-serif;
+    color: white;
+}
+
+/* Removed navbar overrides to prevent global leaks - handled inline in config.tsx */
+
+.shard-home-page header::after,
+.shard-home-page nav::after,
+.shard-home-page .glass-navbar::after,
+.shard-home-page header::before,
+.shard-home-page nav::before,
+.shard-home-page .glass-navbar::before {
+    display: none !important;
+    content: none !important;
+    border: none !important;
+}
+
+/* Force remove any scaffold header borders on Home */
+.shard-home-page header {
+    border-bottom: none !important;
+}
+
+/* NUCLEAR OPTION: Hide the sticky Scaffold Footer on Home Page */
+.shard-home-page .oui-scaffold-footer,
+.shard-home-page footer.oui-scaffold-footer,
+.shard-home-page [class*="scaffold-footer"],
+.shard-home-page .oui-fixed.oui-bottom-0,
+.shard-home-page~.oui-scaffold-footer,
+.oui-scaffold-root:has(.shard-home-page) .oui-scaffold-footer {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+}
+
+/* Typography */
+.shard-home-page .home-hero-text {
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.8) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Home Navbar Links Override */
+.shard-home-page .home-nav-links a {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.shard-home-page .home-nav-links a:hover,
+.shard-home-page .home-nav-links a.oui-text-primary {
+    color: white !important;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+
+/* Hero Radial Glow */
+.shard-home-page .home-hero-glow {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60vw;
+    height: 40vh;
+    background: radial-gradient(ellipse at center, rgba(64, 61, 255, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.shard-home-page .home-sub-text {
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: -0.01em;
+    line-height: 1.6;
+}
+
+/* Sleek Buttons */
+/* Sleek Buttons */
+.shard-home-page .home-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    padding: 0 2rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+/* Primary Glass Button */
+.shard-home-page .home-btn-primary {
+    background: rgba(64, 61, 255, 0.9);
+    border: 1px solid rgba(64, 61, 255, 0.5);
+    box-shadow: 0 0 20px rgba(64, 61, 255, 0.2);
+    color: white;
+}
+
+.shard-home-page .home-btn-primary:hover {
+    background: #403dff;
+    box-shadow: 0 0 30px rgba(64, 61, 255, 0.4);
+    transform: translateY(-1px);
+}
+
+/* Secondary Glass Button */
+.shard-home-page .home-btn-secondary {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.shard-home-page .home-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.25);
+    color: white;
+}
+
+/* Stats Layout */
+.shard-home-page .home-stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.shard-home-page .home-stat-item:last-child {
+    border-right: none;
+}
+
+@media (max-width: 768px) {
+    .shard-home-page .home-stat-item {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 1.5rem 0;
+    }
+
+    .shard-home-page .home-stat-item:last-child {
+        border-bottom: none;
+    }
+}
+
+/* Features Grid */
+.shard-home-page .home-features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .shard-home-page .home-features-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Features*/
+/* CTA Card */
+.shard-home-page .home-cta-card {
+    padding: 4rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0.4) 100%);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 100px rgba(64, 61, 255, 0.05);
+}
+
+/* Product Showcase */
+.shard-home-page .home-showcase-container {
+    width: 100%;
+    max-width: 1200px;
+    perspective: 2000px;
+}
+
+.shard-home-page .home-showcase-inner {
+    position: relative;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(10, 10, 12, 0.5);
+    backdrop-filter: blur(10px);
+    box-shadow:
+        0 20px 50px -10px rgba(0, 0, 0, 0.5),
+        0 0 100px -20px rgba(64, 61, 255, 0.2);
+    transform: rotateX(20deg) scale(0.95);
+    transform-origin: top center;
+    transition: transform 0.5s ease;
+    overflow: hidden;
+}
+
+.shard-home-page .home-showcase-inner:hover {
+    transform: rotateX(0deg) scale(1);
+}
+
+.shard-home-page .home-showcase-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
+
+.shard-home-page .home-showcase-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.1), transparent 70%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.shard-home-page .home-feature-card {
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0) 100%);
+    transition: all 0.3s ease;
+}
+
+.shard-home-page .home-feature-card:hover {
+    border-color: rgba(64, 61, 255, 0.3);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.shard-home-page .home-feature-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+/* Background Elements */
+.shard-home-page .home-grid-bg {
+    background-image:
+        radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+/* Big CTA Card */
+.shard-home-page .home-cta-card {
+    background: #050508 !important;
+    /* Solid dark base */
+    background: linear-gradient(180deg, rgba(8, 8, 12, 0.95) 0%, rgba(3, 3, 5, 0.98) 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: 24px;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8), inset 0 0 80px rgba(64, 61, 255, 0.03) !important;
+}
+
+.shard-home-page .home-cta-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+/* Marquee Animations */
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes scroll-right {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.chain-marquee-container {
+    mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    padding: 1rem 0;
+}
+
+.chain-marquee-row {
+    display: flex;
+    width: max-content;
+    gap: 4rem;
+    padding: 1rem 0;
+}
+
+/* Pause on hover */
+.chain-marquee-container:hover .chain-marquee-row {
+    animation-play-state: paused;
+}

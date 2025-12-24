@@ -40,12 +40,8 @@ const ServiceDisclaimerDialog = () => {
   };
 
   const content = {
-    intro: `${getRuntimeConfig(
-      "VITE_ORDERLY_BROKER_NAME"
-    )} uses Orderly Network's white-label solution and is not a direct operator of the orderbook.`,
-    disclaimer: `By clicking 'Agree', users will access a third-party website using Orderly software. ${getRuntimeConfig(
-      "VITE_ORDERLY_BROKER_NAME"
-    )} confirms that it does not directly operate or control the infrastructure or take responsibility for code operations.`,
+    intro: `Shard DEX is an institutional-grade trading interface powered by Orderly Network's high-performance institutional infrastructure. Shard DEX is not a direct operator of the orderbook.`,
+    disclaimer: `By clicking 'Agree', users will access a professional-grade trading ecosystem using Orderly software. Shard DEX confirms that it focuses on providing a premium user experience while the underlying infrastructure is managed by Orderly Network.`,
   };
 
   return (
