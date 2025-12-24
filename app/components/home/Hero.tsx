@@ -59,9 +59,9 @@ export const Hero: FC = () => {
                     </button>
                     <button
                         className="home-btn home-btn-secondary oui-w-full md:oui-w-auto"
-                        onClick={() => window.open("https://docs.orderly.network", "_blank")}
+                        onClick={() => navigate("/markets")}
                     >
-                        Whitepaper
+                        Explore Markets
                     </button>
                 </div>
             </Flex>

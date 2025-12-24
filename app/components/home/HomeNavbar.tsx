@@ -110,7 +110,7 @@ export const HomeNavbar: FC<HomeNavbarProps> = ({ components, socials, menus, cu
                     boxShadow: "0 0 15px rgba(64, 61, 255, 0.4)",
                     transition: "all 0.2s ease",
                 }}
-                onClick={() => navigate("/perp/PERP_ETH_USDC")}
+                onClick={() => navigate("/perp")}
             >
                 Start Trading
             </Button>
