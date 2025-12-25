@@ -118,3 +118,30 @@ body.shard-home-page-body [class*="scaffold-header"] {
   pointer-events: none !important;
   overflow: hidden !important;
 }
+
+/* 
+  MOBILE SCANNER DIALOG FIX
+  Forces the Orderly SDK dialog/popover to be full width on mobile.
+  Uses attribute selectors to catch Radix UI and Orderly variations.
+*/
+@media (max-width: 768px) {
+
+  div[role="dialog"],
+  .oui-dialog-content,
+  [class*="dialog-content"],
+  [class*="modal-content"],
+  [data-radix-popper-content-wrapper] {
+    width: 90vw !important;
+    max-width: 90vw !important;
+    min-width: 320px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+
+  /* Ensure text doesn't squeeze */
+  div[role="dialog"] *,
+  .oui-dialog-content * {
+    white-space: normal !important;
+    word-break: break-word !important;
+  }
+}

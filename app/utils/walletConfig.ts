@@ -34,7 +34,7 @@ export const getEvmConnectors = (): CreateConnectorFn[] => {
     connectors.push(
       walletConnect({
         projectId: walletConnectProjectId,
-        showQrModal: true,
+        showQrModal: false,
         metadata: {
           name: getRuntimeConfig("VITE_APP_NAME") || "Orderly App",
           description:
@@ -115,13 +115,13 @@ export const getEvmInitialConfig = () => {
 
   return wallets.length > 0
     ? {
-        options: {
-          wallets,
-          appMetadata: {
-            name: getRuntimeConfig("VITE_ORDERLY_BROKER_NAME"),
-            description: getRuntimeConfig("VITE_ORDERLY_BROKER_NAME"),
-          },
+      options: {
+        wallets,
+        appMetadata: {
+          name: getRuntimeConfig("VITE_ORDERLY_BROKER_NAME"),
+          description: getRuntimeConfig("VITE_ORDERLY_BROKER_NAME"),
         },
-      }
+      },
+    }
     : undefined;
 };
