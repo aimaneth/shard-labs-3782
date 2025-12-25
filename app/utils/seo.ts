@@ -130,7 +130,7 @@ export function getPageMeta(): (MetaTag | LinkTag)[] {
   let metaImage;
   if (siteUrl) {
     const baseUrl = siteUrl.endsWith("/") ? siteUrl.slice(0, -1) : siteUrl;
-    metaImage = `${baseUrl}/logo.webp`;
+    metaImage = `${baseUrl}/social-share.png`;
   }
 
   const metaKeywords = config.keywords;
