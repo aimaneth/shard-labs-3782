@@ -11,6 +11,7 @@
   display: none;
 }
 
+/* Footer price ticker/carousel animation */
 @keyframes ticker {
   0% {
     transform: translateX(0);
@@ -26,9 +27,7 @@
   overflow: hidden;
   white-space: nowrap;
   flex: 1 !important;
-  /* Allow carousel to take up remaining space */
   min-width: 0;
-  /* Allow it to shrink if needed, though it's huge */
 }
 
 .ticker-content {
@@ -37,7 +36,6 @@
   padding-left: 100%;
   vertical-align: middle;
   line-height: normal;
-  /* Reset line-height to prevent vertical shifts */
 }
 
 .ticker-wrap:hover .ticker-content {
@@ -50,109 +48,49 @@
   vertical-align: middle;
 }
 
-/* EXPAND and LOCK "Join our community" layout */
-.oui-footer .oui-box.oui-flex-row:has(> span:first-child) {
-  flex: 0 0 auto !important;
-  /* NEVER SHRINK */
-  min-width: 250px !important;
-  /* Force expansion */
-  white-space: nowrap !important;
-  gap: 12px !important;
-  align-items: center !important;
-  display: flex !important;
-}
-
-/* Ensure the text itself never wraps */
-.oui-footer .oui-box.oui-flex-row:has(> span:first-child)>span {
-  white-space: nowrap !important;
-  flex-shrink: 0 !important;
-}
-
-/* Prevent the icon container from shrinking */
-.oui-footer .oui-box.oui-flex-row:has(> span:first-child)>.oui-flex-row {
-  flex-shrink: 0 !important;
-  display: flex !important;
-}
-
-/* Hide legacy footer components */
-.oui-footer-operational,
-.oui-footer-powered-by,
-.oui-footer-status,
-[class*="footer_status"],
-[class*="footer_operational"],
-[class*="footer_poweredBy"] {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-/* 
-  GLOBAL NAVBAR OVERRIDES
-  Ensures the Orderly Scaffold top navbar has a solid, full-width background.
-*/
-.oui-scaffold-header,
-header.oui-main-nav,
-.oui-main-nav {
-  height: 48px !important;
-  min-height: 48px !important;
-  background: #0d0d12 !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
-}
-
-/* Cleaned up global styles - Shard utils moved to home.css */
-
-/* 
-  HOME PAGE HEADER HACK
-  When HomeNavbar is active, it adds 'shard-home-page-body' to the body.
-  We use this to NUKE the default scaffold header so it doesn't show up behind our custom portal navbar.
-*/
-body.shard-home-page-body .oui-scaffold-header,
-body.shard-home-page-body nav.oui-main-nav,
-body.shard-home-page-body header,
-body.shard-home-page-body [class*="scaffold-header"] {
-  display: none !important;
-  height: 0 !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-  overflow: hidden !important;
-}
-
-/* 
-  MOBILE SCANNER DIALOG FIX
-  Forces the Orderly SDK dialog/popover to be full width on mobile.
-  Uses attribute selectors to catch Radix UI and Orderly variations.
-*/
+/* Fix all dialogs/modals on mobile (Scan QR, Switch Network, etc.) */
 @media (max-width: 768px) {
 
   div[role="dialog"],
   .oui-dialog-content,
   [class*="dialog-content"],
-  [class*="modal-content"],
-  [data-radix-popper-content-wrapper] {
-    width: 90vw !important;
-    max-width: 90vw !important;
-    min-width: 320px !important;
-    left: 50% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) !important;
+  [class*="modal-content"] {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: 80vh !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    bottom: 0 !important;
+    transform: none !important;
     position: fixed !important;
     margin: 0 !important;
+    padding: 16px !important;
+    border-radius: 16px 16px 0 0 !important;
+    overflow: auto !important;
+
+    /* Thin scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
   }
 
-  /* Ensure text doesn't squeeze */
-  div[role="dialog"] *,
-  .oui-dialog-content * {
-    white-space: normal !important;
-    word-break: break-word !important;
+  /* Webkit thin scrollbar for dialogs */
+  div[role="dialog"]::-webkit-scrollbar,
+  .oui-dialog-content::-webkit-scrollbar {
+    width: 4px;
   }
-}
 
-/* 
-  MARKETS PAGE ICON REMOVAL
-  Hides the small Orderly icons in the stats headers (Open Interest, Assets, Volume).
-*/
-.shard-markets-page .oui-gap-x-1>svg {
-  display: none !important;
+  div[role="dialog"]::-webkit-scrollbar-track,
+  .oui-dialog-content::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  div[role="dialog"]::-webkit-scrollbar-thumb,
+  .oui-dialog-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+  }
 }
