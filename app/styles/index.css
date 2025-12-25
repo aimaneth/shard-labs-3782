@@ -148,3 +148,11 @@ body.shard-home-page-body [class*="scaffold-header"] {
     word-break: break-word !important;
   }
 }
+
+/* 
+  MARKETS PAGE ICON REMOVAL
+  Hides the small Orderly icons in the stats headers (Open Interest, Assets, Volume).
+*/
+.shard-markets-page .oui-gap-x-1>svg {
+  display: none !important;
+}

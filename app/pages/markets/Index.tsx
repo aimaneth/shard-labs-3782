@@ -14,19 +14,21 @@ export default function MarketsIndex() {
   return (
     <>
       {renderSEOTags(pageMeta, pageTitle)}
-      <MarketsHomePage
-        comparisonProps={{
-          exchangesIconSrc:
-            getRuntimeConfigBoolean("VITE_HAS_SECONDARY_LOGO")
-              ? "/logo-secondary.webp"
-              : undefined,
-          exchangesName:
-            getRuntimeConfig("VITE_ORDERLY_BROKER_NAME"),
-        }}
-        onSymbolChange={(symbol) => {
-          navigate(withBasePath(`/perp/${symbol.symbol}`));
-        }}
-      />
+      <div className="shard-markets-page">
+        <MarketsHomePage
+          comparisonProps={{
+            exchangesIconSrc:
+              getRuntimeConfigBoolean("VITE_HAS_SECONDARY_LOGO")
+                ? "/logo-secondary.webp"
+                : undefined,
+            exchangesName:
+              getRuntimeConfig("VITE_ORDERLY_BROKER_NAME"),
+          }}
+          onSymbolChange={(symbol) => {
+            navigate(withBasePath(`/perp/${symbol.symbol}`));
+          }}
+        />
+      </div>
     </>
   );
 }
