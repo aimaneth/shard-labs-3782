@@ -81,6 +81,9 @@ export default defineConfig(() => {
                 id.includes("wagmi") ||
                 id.includes("viem") ||
                 id.includes("ethers") ||
+                id.includes("bs58") ||
+                id.includes("@coral-xyz/anchor") ||
+                id.includes("lodash") ||
                 id.includes("crypto-browserify") ||
                 id.includes("browserify-") ||
                 id.includes("create-hash") ||
