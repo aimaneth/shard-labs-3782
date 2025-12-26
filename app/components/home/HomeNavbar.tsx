@@ -43,78 +43,80 @@ export const HomeNavbar: FC<HomeNavbarProps> = ({ components, socials, menus, cu
 
     // Use Portal to escape stacking contexts found in the app layout
     return createPortal(
-        <Flex
-            justify="between"
-            className="oui-w-full home-navbar-standalone"
+        <div
+            className="home-navbar-standalone"
             style={{
                 position: "fixed",
                 top: 0,
                 left: 0,
                 right: 0,
                 zIndex: 9999,
-                padding: "20px 1.5rem 0",
                 height: "84px",
+                padding: "0 1.5rem",
+                paddingTop: "14px", // Keeps items at original ~32px visual center (64px/2)
+                boxSizing: "border-box",
                 background: isScrolled
                     ? "rgba(5, 5, 8, 0.95)" // Scrolled: Dark Glass (Mobile & Desktop)
                     : "transparent", // Top: Transparent
                 backdropFilter: isScrolled
                     ? "blur(20px)"
                     : "none",
-                border: "none",
                 borderBottom: isScrolled ? "1px solid rgba(255,255,255,0.05)" : "none",
                 transition: "all 0.3s ease",
             }}
         >
-            <Flex itemAlign="center" className="oui-gap-3 md:oui-gap-8">
-                {isMobile && (
-                    <CustomLeftNav
-                        menus={menus}
-                        externalLinks={customMenus}
-                        socials={socials}
-                        className="oui-text-white"
-                    />
-                )}
-                <Link to="/" className="oui-flex-shrink-0">
-                    {isMobile ? (
-                        <img
-                            src={withBasePath("/shard-logo-secondary.svg")}
-                            alt="logo"
-                            style={{ height: "28px", display: "block", width: "auto" }}
-                        />
-                    ) : (
-                        <img
-                            src={withBasePath("/shard.svg")}
-                            alt="logo"
-                            style={{ height: "32px", display: "block", width: "auto" }}
+            <Flex justify="between" itemAlign="center" className="oui-w-full">
+                <Flex itemAlign="center" className="oui-gap-3 md:oui-gap-8">
+                    {isMobile && (
+                        <CustomLeftNav
+                            menus={menus}
+                            externalLinks={customMenus}
+                            socials={socials}
+                            className="oui-text-white"
                         />
                     )}
-                </Link>
-                {/* Restore Navigation Links */}
-                <div className="home-nav-links oui-hidden md:oui-flex oui-gap-1">
-                    {components.mainNav}
-                </div>
+                    <Link to="/" className="oui-flex-shrink-0">
+                        {isMobile ? (
+                            <img
+                                src={withBasePath("/shard-logo-secondary.svg")}
+                                alt="logo"
+                                style={{ height: "28px", display: "block", width: "auto" }}
+                            />
+                        ) : (
+                            <img
+                                src={withBasePath("/shard.svg")}
+                                alt="logo"
+                                style={{ height: "32px", display: "block", width: "auto" }}
+                            />
+                        )}
+                    </Link>
+                    {/* Restore Navigation Links */}
+                    <div className="home-nav-links oui-hidden md:oui-flex oui-gap-1">
+                        {components.mainNav}
+                    </div>
+                </Flex>
+                <Button
+                    size="sm"
+                    className="shard-btn-primary"
+                    style={{
+                        background: "#403dff",
+                        border: "none",
+                        color: "white",
+                        fontWeight: 600,
+                        textTransform: "uppercase",
+                        fontSize: "0.75rem",
+                        padding: "0 1.5rem",
+                        height: "36px",
+                        borderRadius: "9999px",
+                        boxShadow: "0 0 15px rgba(64, 61, 255, 0.4)",
+                        transition: "all 0.2s ease",
+                    }}
+                    onClick={() => navigate("/perp")}
+                >
+                    Start Trading
+                </Button>
             </Flex>
-            <Button
-                size="sm"
-                className="shard-btn-primary"
-                style={{
-                    background: "#403dff",
-                    border: "none",
-                    color: "white",
-                    fontWeight: 600,
-                    textTransform: "uppercase",
-                    fontSize: "0.75rem",
-                    padding: "0 1.5rem",
-                    height: "36px",
-                    borderRadius: "9999px",
-                    boxShadow: "0 0 15px rgba(64, 61, 255, 0.4)",
-                    transition: "all 0.2s ease",
-                }}
-                onClick={() => navigate("/perp")}
-            >
-                Start Trading
-            </Button>
-        </Flex>,
+        </div>,
         document.body
     );
 };
