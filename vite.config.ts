@@ -73,33 +73,8 @@ export default defineConfig(() => {
               if (id.includes("three")) {
                 return "three";
               }
-              // Combine orderly, web3, and all crypto-related polyfills to ensure they initialize correctly
-              if (
-                id.includes("@orderly.network") ||
-                id.includes("@privy-io") ||
-                id.includes("privy") ||
-                id.includes("wagmi") ||
-                id.includes("viem") ||
-                id.includes("ethers") ||
-                id.includes("bs58") ||
-                id.includes("@coral-xyz/anchor") ||
-                id.includes("lodash") ||
-                id.includes("crypto-browserify") ||
-                id.includes("browserify-") ||
-                id.includes("create-hash") ||
-                id.includes("create-hmac") ||
-                id.includes("randombytes") ||
-                id.includes("pbkdf2") ||
-                id.includes("ripemd160") ||
-                id.includes("sha.js") ||
-                id.includes("buffer") ||
-                id.includes("stream-browserify") ||
-                id.includes("elliptic") ||
-                id.includes("bn.js")
-              ) {
-                return "orderly-web3";
-              }
-              return "vendor";
+              // Reverting orderly-web3 chunking as it breaks circular dependencies
+              // and initialization of polyfilled globals (BN, crypto, etc.)
             }
           },
         },
