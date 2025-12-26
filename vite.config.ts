@@ -57,6 +57,7 @@ export default defineConfig(() => {
     ],
     build: {
       outDir: "build/client",
+      sourcemap: false,
       rollupOptions: {
         output: {
           manualChunks: (id) => {
