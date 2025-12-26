@@ -1,4 +1,5 @@
 import { ReactNode, useCallback, lazy, Suspense } from "react";
+import { useLocation } from "react-router-dom";
 import { OrderlyAppProvider } from "@orderly.network/react-app";
 import { useOrderlyConfig } from "@/utils/config";
 import type { NetworkId } from "@orderly.network/types";
@@ -181,6 +182,8 @@ const OrderlyProvider = (props: { children: ReactNode }) => {
 		? <PrivyConnector networkId={networkId}>{appProvider}</PrivyConnector>
 		: <WalletConnector networkId={networkId}>{appProvider}</WalletConnector>;
 
+	const isHomePage = location.pathname === "/";
+
 	return (
 		<LocaleProvider
 			onLanguageChanged={onLanguageChanged}
@@ -188,7 +191,7 @@ const OrderlyProvider = (props: { children: ReactNode }) => {
 			locale={defaultLanguage}
 			languages={filteredLanguages}
 		>
-			<Suspense fallback={<LoadingSpinner />}>
+			<Suspense fallback={isHomePage ? null : <LoadingSpinner />}>
 				{walletConnector}
 			</Suspense>
 		</LocaleProvider>
