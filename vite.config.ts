@@ -57,6 +57,30 @@ export default defineConfig(() => {
     ],
     build: {
       outDir: "build/client",
+      rollupOptions: {
+        output: {
+          manualChunks: (id) => {
+            if (id.includes("node_modules")) {
+              if (id.includes("@orderly.network")) {
+                return "orderly";
+              }
+              if (id.includes("woofi-swap-widget-kit")) {
+                return "woofi-widget";
+              }
+              if (id.includes("@privy-io") || id.includes("privy")) {
+                return "privy";
+              }
+              if (id.includes("three")) {
+                return "three";
+              }
+              if (id.includes("wagmi") || id.includes("viem") || id.includes("ethers")) {
+                return "web3-core";
+              }
+              return "vendor";
+            }
+          },
+        },
+      },
     },
     optimizeDeps: {
       include: ["react", "react-dom", "react-router-dom"],

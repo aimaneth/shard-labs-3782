@@ -16,9 +16,66 @@
     <link rel="apple-touch-icon" href="/favicon.webp" />
 
     <title>Orderly Network</title>
+    <style>
+      #root:empty + #initial-loader {
+        display: flex;
+      }
+      #initial-loader {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #0d0d12;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        flex-direction: column;
+      }
+      .loader-logo-wrapper {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        height: 100px;
+      }
+      .loader-logo {
+        width: 50px;
+        height: 50px;
+        z-index: 2;
+        filter: drop-shadow(0 0 10px rgba(64, 61, 255, 0.5));
+        animation: loader-pulse 2s ease-in-out infinite;
+      }
+      .loader-ring {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        border: 2px solid transparent;
+        border-top-color: #403dff;
+        border-right-color: #403dff;
+        border-radius: 50%;
+        animation: loader-spin 1s linear infinite;
+      }
+      @keyframes loader-spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      @keyframes loader-pulse {
+        0%, 100% { transform: scale(1); opacity: 0.8; }
+        50% { transform: scale(1.1); opacity: 1; }
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
+    <div id="initial-loader">
+      <div class="loader-logo-wrapper">
+        <img src="/shard-logo-secondary.svg" alt="Shard Logo" class="loader-logo" />
+        <div class="loader-ring"></div>
+      </div>
+    </div>
     <script type="module" src="/app/main.tsx"></script>
   </body>
 </html>

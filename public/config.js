@@ -27,7 +27,7 @@ window.__RUNTIME_CONFIG__ = {
   "VITE_TWITTER_URL": "https://twitter.com/ShardDEX",
   "VITE_SEO_SITE_NAME": "Shard DEX",
   "VITE_SEO_SITE_DESCRIPTION": "Institutional-grade perpetual trading with lightning-fast execution, deep liquidity, and a sleek, professional interface. Experience high-performance trading with precision and security.",
-  "VITE_SEO_SITE_URL": "https://shard.dex/",
+  "VITE_SEO_SITE_URL": "https://shardperp.vercel.app",
   "VITE_SEO_SITE_LANGUAGE": "en",
   "VITE_SEO_SITE_LOCALE": "en_US",
   "VITE_SEO_TWITTER_HANDLE": "",
