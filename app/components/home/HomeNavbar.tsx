@@ -45,6 +45,7 @@ export const HomeNavbar: FC<HomeNavbarProps> = ({ components, socials, menus, cu
     return createPortal(
         <Flex
             justify="between"
+            itemAlign="center"
             className="oui-w-full home-navbar-standalone"
             style={{
                 position: "fixed",
@@ -53,7 +54,7 @@ export const HomeNavbar: FC<HomeNavbarProps> = ({ components, socials, menus, cu
                 right: 0,
                 zIndex: 9999,
                 padding: "0 1.5rem",
-                height: "64px",
+                height: "88px",
                 background: isScrolled
                     ? "rgba(5, 5, 8, 0.95)" // Scrolled: Dark Glass (Mobile & Desktop)
                     : "transparent", // Top: Transparent
