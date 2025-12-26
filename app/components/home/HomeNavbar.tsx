@@ -51,9 +51,8 @@ export const HomeNavbar: FC<HomeNavbarProps> = ({ components, socials, menus, cu
                 left: 0,
                 right: 0,
                 zIndex: 9999,
-                height: "84px",
+                height: "56px",
                 padding: "0 1.5rem",
-                paddingTop: "14px", // Keeps items at original ~32px visual center (64px/2)
                 boxSizing: "border-box",
                 background: isScrolled
                     ? "rgba(5, 5, 8, 0.95)" // Scrolled: Dark Glass (Mobile & Desktop)
@@ -65,7 +64,7 @@ export const HomeNavbar: FC<HomeNavbarProps> = ({ components, socials, menus, cu
                 transition: "all 0.3s ease",
             }}
         >
-            <Flex justify="between" itemAlign="center" className="oui-w-full">
+            <Flex justify="between" itemAlign="center" className="oui-w-full oui-h-full">
                 <Flex itemAlign="center" className="oui-gap-3 md:oui-gap-8">
                     {isMobile && (
                         <CustomLeftNav
@@ -86,7 +85,7 @@ export const HomeNavbar: FC<HomeNavbarProps> = ({ components, socials, menus, cu
                             <img
                                 src={withBasePath("/shard.svg")}
                                 alt="logo"
-                                style={{ height: "32px", display: "block", width: "auto" }}
+                                style={{ height: "28px", display: "block", width: "auto" }}
                             />
                         )}
                     </Link>
@@ -105,8 +104,8 @@ export const HomeNavbar: FC<HomeNavbarProps> = ({ components, socials, menus, cu
                         fontWeight: 600,
                         textTransform: "uppercase",
                         fontSize: "0.75rem",
-                        padding: "0 1.5rem",
-                        height: "36px",
+                        padding: "0 1.25rem",
+                        height: "32px",
                         borderRadius: "9999px",
                         boxShadow: "0 0 15px rgba(64, 61, 255, 0.4)",
                         transition: "all 0.2s ease",
@@ -115,8 +114,7 @@ export const HomeNavbar: FC<HomeNavbarProps> = ({ components, socials, menus, cu
                 >
                     Start Trading
                 </Button>
-            </Flex>
-        </div>,
-        document.body
-    );
+            </Flex>,
+            document.body
+            );
 };
