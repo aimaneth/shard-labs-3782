@@ -6,7 +6,7 @@ import App from './App';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { withBasePath } from './utils/base-path';
 import { getRuntimeConfig } from './utils/runtime-config';
-
+import { Analytics } from "@vercel/analytics/react";
 import './styles/index.css';
 
 const IndexPage = lazy(() => import('./pages/Index'));
@@ -57,18 +57,18 @@ function loadAnalytics() {
     const parser = new DOMParser();
     const doc = parser.parseFromString(analyticsScript, 'text/html');
     const scripts = doc.querySelectorAll('script');
-    
+
     scripts.forEach((originalScript) => {
       const newScript = document.createElement('script');
-      
+
       Array.from(originalScript.attributes).forEach((attr) => {
         newScript.setAttribute(attr.name, attr.value);
       });
-      
+
       if (originalScript.textContent) {
         newScript.textContent = originalScript.textContent;
       }
-      
+
       document.head.appendChild(newScript);
     });
   }
@@ -147,12 +147,13 @@ const router = createBrowserRouter([
 
 loadRuntimeConfig().then(() => {
   loadAnalytics();
-  
+
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
       <HelmetProvider>
         <RouterProvider router={router} />
       </HelmetProvider>
+      <Analytics />
     </React.StrictMode>
   );
 });

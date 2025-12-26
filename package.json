@@ -47,7 +47,8 @@
     "stream-browserify": "^3.0.0",
     "three": "^0.182.0",
     "wagmi": "^2.15.4",
-    "woofi-swap-widget-kit": "^0.0.38"
+    "woofi-swap-widget-kit": "^0.0.38",
+    "@vercel/analytics": "^1.5.0"
   },
   "devDependencies": {
     "@types/node": "^20.11.30",
