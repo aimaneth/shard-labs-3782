@@ -52,6 +52,11 @@ export default defineConfig(() => {
         dependencies: ["bs58", "@coral-xyz/anchor", "lodash"],
       }),
       nodePolyfills({
+        globals: {
+          Buffer: true,
+          process: true,
+          global: true,
+        },
         include: ["buffer", "crypto", "stream"],
       }),
     ],
@@ -68,14 +73,26 @@ export default defineConfig(() => {
               if (id.includes("three")) {
                 return "three";
               }
-              // Keep web3 ecosystem together to avoid circular initialization issues ("Cannot access before initialization")
+              // Combine orderly, web3, and all crypto-related polyfills to ensure they initialize correctly
               if (
                 id.includes("@orderly.network") ||
                 id.includes("@privy-io") ||
                 id.includes("privy") ||
                 id.includes("wagmi") ||
                 id.includes("viem") ||
-                id.includes("ethers")
+                id.includes("ethers") ||
+                id.includes("crypto-browserify") ||
+                id.includes("browserify-") ||
+                id.includes("create-hash") ||
+                id.includes("create-hmac") ||
+                id.includes("randombytes") ||
+                id.includes("pbkdf2") ||
+                id.includes("ripemd160") ||
+                id.includes("sha.js") ||
+                id.includes("buffer") ||
+                id.includes("stream-browserify") ||
+                id.includes("elliptic") ||
+                id.includes("bn.js")
               ) {
                 return "orderly-web3";
               }
