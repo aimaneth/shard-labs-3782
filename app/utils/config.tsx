@@ -42,7 +42,7 @@ export type OrderlyConfig = {
 };
 
 const ALL_MENU_ITEMS = [
-  { name: "Trading", href: "/", translationKey: "common.trading" },
+  { name: "Trading", href: "/perp", translationKey: "common.trading" },
   { name: "Portfolio", href: "/portfolio", translationKey: "common.portfolio" },
   { name: "Markets", href: "/markets", translationKey: "common.markets" },
   { name: "Swap", href: "/swap", translationKey: "extend.swap" },
@@ -52,7 +52,7 @@ const ALL_MENU_ITEMS = [
 ];
 
 const DEFAULT_ENABLED_MENUS = [
-  { name: "Trading", href: "/", translationKey: "common.trading" },
+  { name: "Trading", href: "/perp", translationKey: "common.trading" },
   { name: "Portfolio", href: "/portfolio", translationKey: "common.portfolio" },
   { name: "Markets", href: "/markets", translationKey: "common.markets" },
   { name: "Swap", href: "/swap", translationKey: "extend.swap" },
@@ -214,7 +214,7 @@ export const useOrderlyConfig = () => {
       .filter(menu => menu.activeIcon && menu.inactiveIcon);
 
     const mainNavProps: MainNavWidgetProps = {
-      initialMenu: "/",
+      initialMenu: "/perp",
       mainMenus: allMenuItems,
     };
 
