@@ -149,29 +149,40 @@ export function PixelGrid({
             }
         }
 
-        const renderLoop = () => {
-            if (bgColor === "transparent") c2d.clearRect(0, 0, canvas.width, canvas.height)
+        let animationFrameId: number;
+        let lastTimestamp = 0;
+        const fpsInterval = 1000 / 30; // 30 FPS is plenty for a background effect
+
+        const renderLoop = (timestamp: number) => {
+            animationFrameId = requestAnimationFrame(renderLoop);
+
+            const elapsed = timestamp - lastTimestamp;
+            if (elapsed < fpsInterval) return;
+
+            lastTimestamp = timestamp - (elapsed % fpsInterval);
+
+            if (bgColor === "transparent") c2d.clearRect(0, 0, canvas.width, canvas.height);
             else {
-                c2d.fillStyle = bgColor
-                c2d.fillRect(0, 0, canvas.width, canvas.height)
+                c2d.fillStyle = bgColor;
+                c2d.fillRect(0, 0, canvas.width, canvas.height);
             }
 
             if (glow) {
-                c2d.shadowBlur = 8
-                c2d.shadowColor = pixelColor
+                c2d.shadowBlur = 8;
+                c2d.shadowColor = pixelColor;
             } else {
-                c2d.shadowBlur = 0
+                c2d.shadowBlur = 0;
             }
 
-            for (const pixel of pixelsRef.current) drawPixel(pixel)
-            requestAnimationFrame(renderLoop)
-        }
+            for (const pixel of pixelsRef.current) drawPixel(pixel);
+        };
 
-        renderLoop()
+        animationFrameId = requestAnimationFrame(renderLoop);
 
         return () => {
-            window.removeEventListener("resize", resizeCanvas)
-        }
+            window.removeEventListener("resize", resizeCanvas);
+            cancelAnimationFrame(animationFrameId);
+        };
     }, [
         bgColor,
         pixelColor,
