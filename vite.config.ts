@@ -62,20 +62,22 @@ export default defineConfig(() => {
         output: {
           manualChunks: (id) => {
             if (id.includes("node_modules")) {
-              if (id.includes("@orderly.network")) {
-                return "orderly";
-              }
               if (id.includes("woofi-swap-widget-kit")) {
                 return "woofi-widget";
-              }
-              if (id.includes("@privy-io") || id.includes("privy")) {
-                return "privy";
               }
               if (id.includes("three")) {
                 return "three";
               }
-              if (id.includes("wagmi") || id.includes("viem") || id.includes("ethers")) {
-                return "web3-core";
+              // Keep web3 ecosystem together to avoid circular initialization issues ("Cannot access before initialization")
+              if (
+                id.includes("@orderly.network") ||
+                id.includes("@privy-io") ||
+                id.includes("privy") ||
+                id.includes("wagmi") ||
+                id.includes("viem") ||
+                id.includes("ethers")
+              ) {
+                return "orderly-web3";
               }
               return "vendor";
             }
