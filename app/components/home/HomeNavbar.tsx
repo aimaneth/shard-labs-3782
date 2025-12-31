@@ -23,12 +23,16 @@ export const HomeNavbar: FC<HomeNavbarProps> = ({ components, socials, menus, cu
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 10) {
+            const scrollY = window.scrollY || document.documentElement.scrollTop;
+            if (scrollY > 10) {
                 setIsScrolled(true);
             } else {
                 setIsScrolled(false);
             }
         };
+
+        // Check initially
+        handleScroll();
 
         window.addEventListener("scroll", handleScroll);
 
