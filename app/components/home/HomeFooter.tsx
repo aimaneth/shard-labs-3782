@@ -1,7 +1,10 @@
 import { FC } from "react";
 import { withBasePath } from "../../utils/base-path";
+import { getRuntimeConfig } from "../../utils/runtime-config";
 
 export const HomeFooter: FC = () => {
+    const twitterUrl = getRuntimeConfig('VITE_TWITTER_URL') || 'https://twitter.com/sharddex';
+    const discordUrl = getRuntimeConfig('VITE_DISCORD_URL') || 'https://discord.gg/sharddex';
     return (
         <footer style={{
             width: "100%",
@@ -60,8 +63,8 @@ export const HomeFooter: FC = () => {
                         </div>
                         <div>
                             <div style={labelStyle}>Community</div>
-                            <a href="https://twitter.com/OrderlyNetwork" target="_blank" rel="noreferrer" style={linkStyle}>X (Twitter)</a>
-                            <a href="https://discord.gg/orderlynetwork" target="_blank" rel="noreferrer" style={linkStyle}>Discord</a>
+                            <a href={twitterUrl} target="_blank" rel="noreferrer" style={linkStyle}>X (Twitter)</a>
+                            <a href={discordUrl} target="_blank" rel="noreferrer" style={linkStyle}>Discord</a>
                             <a href="https://docs.orderly.network" target="_blank" rel="noreferrer" style={linkStyle}>Docs</a>
                         </div>
                     </div>
