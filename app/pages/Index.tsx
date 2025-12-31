@@ -23,12 +23,12 @@ export default function Index() {
   return (
     <Scaffold
       mainNavProps={config.scaffold.mainNavProps}
-      footerProps={config.scaffold.footerProps}
+      {...(config.scaffold.footerProps && { footerProps: config.scaffold.footerProps })}
       routerAdapter={{
         onRouteChange,
         currentPath: "/",
       }}
-      bottomNavProps={config.scaffold.bottomNavProps}
+      {...(config.scaffold.bottomNavProps && { bottomNavProps: config.scaffold.bottomNavProps })}
     >
       <div className="oui-min-h-screen oui-bg-base-10 oui-overflow-x-hidden shard-home-page">
         <main className="oui-max-w-6xl oui-mx-auto oui-px-6 md:oui-px-20">
