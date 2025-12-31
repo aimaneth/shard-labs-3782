@@ -49,9 +49,10 @@
 }
 
 /* Fix all dialogs/modals on mobile (Scan QR, Switch Network, etc.) */
+/* IMPORTANT: Exclude wallet connector dialog which uses oui-w-[300px] class */
 @media (max-width: 768px) {
 
-  div[role="dialog"],
+  div[role="dialog"]:not([class*="oui-w-"]),
   .oui-dialog-content,
   [class*="dialog-content"],
   [class*="modal-content"] {
