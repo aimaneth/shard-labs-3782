@@ -64,6 +64,29 @@
   background-repeat: no-repeat;
   background-position: center;
   flex-shrink: 0;
+  opacity: 0.36;
+  /* Faded to match title color */
+}
+
+/* Markets Table - Replace 24h volume and OI column header icons */
+.shard-markets-page .oui-table-thead-th:nth-child(5) .oui-inline-flex svg,
+.shard-markets-page .oui-table-thead-th:nth-child(6) .oui-inline-flex svg {
+  display: none !important;
+}
+
+.shard-markets-page .oui-table-thead-th:nth-child(5) .oui-inline-flex::before,
+.shard-markets-page .oui-table-thead-th:nth-child(6) .oui-inline-flex::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-image: url("/shard-logo-secondary.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-shrink: 0;
+  opacity: 0.36;
+  /* Faded to match title color */
 }
 
 /* Connect Wallet Modal - ensure proper width */
