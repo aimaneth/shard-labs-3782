@@ -48,9 +48,34 @@
   vertical-align: middle;
 }
 
+/* Connect Wallet Modal - ensure proper width */
+div[role="dialog"].oui-w-\[300px\] {
+  width: 380px !important;
+  min-width: 380px !important;
+  max-width: 420px !important;
+}
+
 /* Fix all dialogs/modals on mobile (Scan QR, Switch Network, etc.) */
-/* IMPORTANT: Exclude wallet connector dialog which uses oui-w-[300px] class */
 @media (max-width: 768px) {
+
+  /* Connect Wallet Modal on mobile - full width bottom sheet */
+  div[role="dialog"].oui-w-\[300px\] {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 85vh !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    bottom: 0 !important;
+    transform: none !important;
+    position: fixed !important;
+    margin: 0 !important;
+    padding: 16px !important;
+    border-radius: 16px 16px 0 0 !important;
+    overflow: auto !important;
+  }
 
   div[role="dialog"]:not([class*="oui-w-"]),
   .oui-dialog-content,
