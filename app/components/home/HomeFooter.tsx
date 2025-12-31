@@ -60,9 +60,9 @@ export const HomeFooter: FC = () => {
                         </div>
                         <div>
                             <div style={labelStyle}>Community</div>
-                            <a href="https://twitter.com/OrderlyNetwork" target="_blank" rel="noreferrer" style={linkStyle}>X (Twitter)</a>
-                            <a href="https://discord.gg/orderlynetwork" target="_blank" rel="noreferrer" style={linkStyle}>Discord</a>
-                            <a href="https://docs.orderly.network" target="_blank" rel="noreferrer" style={linkStyle}>Docs</a>
+                            <a href="https://x.com/sharddex" target="_blank" rel="noreferrer" style={linkStyle}>X (Twitter)</a>
+                            <a href="https://discord.gg/sharddex" target="_blank" rel="noreferrer" style={linkStyle}>Discord</a>
+                            <a href="https://t.me/sharddex" target="_blank" rel="noreferrer" style={linkStyle}>Telegram</a>
                         </div>
                     </div>
                 </div>
