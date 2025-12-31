@@ -114,7 +114,8 @@ export const HomeNavbar: FC<HomeNavbarProps> = ({ components, socials, menus, cu
                 >
                     Start Trading
                 </Button>
-            </Flex>,
-            document.body
-            );
+            </Flex>
+        </div>,
+        document.body
+    );
 };
