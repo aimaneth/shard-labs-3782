@@ -68,15 +68,20 @@
   /* Faded to match title color */
 }
 
-/* Markets Table - Replace 24h volume and OI column header icons */
-.shard-markets-page .oui-table-thead-th:nth-child(5) .oui-inline-flex svg,
-.shard-markets-page .oui-table-thead-th:nth-child(6) .oui-inline-flex svg {
+/* Markets Table - Hide ALL logos in table headers first */
+.shard-markets-page .oui-table-thead-th .oui-inline-flex svg {
   display: none !important;
 }
 
+/* Ensure NO ::before content on any table headers by default */
+.shard-markets-page .oui-table-thead-th .oui-inline-flex::before {
+  content: none !important;
+}
+
+/* Add logo ONLY to 24h volume (5th) and Open interest (6th) columns */
 .shard-markets-page .oui-table-thead-th:nth-child(5) .oui-inline-flex::before,
 .shard-markets-page .oui-table-thead-th:nth-child(6) .oui-inline-flex::before {
-  content: "";
+  content: "" !important;
   display: inline-block;
   width: 12px;
   height: 12px;
