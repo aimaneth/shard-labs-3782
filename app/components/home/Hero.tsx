@@ -1,14 +1,17 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Flex, Text } from "@orderly.network/ui";
-import { PixelGrid } from "@/components/ui/pixel-grid";
+import { GridPattern, genRandomPattern } from "@/components/ui/grid-pattern";
 
 export const Hero: FC = () => {
     const navigate = useNavigate();
+    // Generate a static pattern ID for consistent hydration (or just use empty dependency array)
+    // Using a sparse pattern for the "infrastructure" feel
+    const pattern = useMemo(() => genRandomPattern(25), []);
 
     return (
         <section className="oui-w-full oui-relative oui-overflow-visible oui-pb-24 oui-flex oui-flex-col oui-items-center" style={{ paddingTop: "20vh" }}>
-            {/* Animated Pixel Grid Background - Full viewport width with bottom fade */}
+            {/* Modular Grid Background - High Performance SVG */}
             <div
                 className="oui-absolute oui-top-0 oui-overflow-hidden"
                 style={{
@@ -17,20 +20,35 @@ export const Hero: FC = () => {
                     width: "100vw",
                     height: "150%",
                     zIndex: 0,
-                    maskImage: "linear-gradient(to bottom, black 0%, black 60%, transparent 100%)",
-                    WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 60%, transparent 100%)",
+                    // Efficient CSS mask for the fade out effect
+                    maskImage: "linear-gradient(to bottom, black 20%, transparent 100%)",
+                    WebkitMaskImage: "linear-gradient(to bottom, black 20%, transparent 100%)",
+                    opacity: 0.6
                 }}
             >
-                <PixelGrid
-                    pixelColor="#403dff"
-                    pixelSize={2}
-                    pixelSpacing={8}
-                    glow={true}
+                <GridPattern
+                    width={50}
+                    height={50}
+                    x="-1"
+                    y="-1"
+                    squares={pattern}
+                    className="oui-absolute oui-inset-0 oui-h-full oui-w-full"
+                    style={{
+                        fill: "rgba(64, 61, 255, 0.1)",
+                        stroke: "rgba(255, 255, 255, 0.05)",
+                        strokeWidth: 1
+                    }}
                 />
             </div>
 
-            {/* Radial Glow Behind Hero */}
-            <div className="home-hero-glow" style={{ zIndex: 1 }} />
+            {/* Radial Glow Behind Text - Static CSS, no heavy filters */}
+            <div
+                className="home-hero-glow"
+                style={{
+                    zIndex: 1,
+                    background: "radial-gradient(ellipse at center, rgba(64, 61, 255, 0.15) 0%, transparent 60%)",
+                }}
+            />
 
             <Flex direction="column" itemAlign="center" className="oui-text-center oui-relative" style={{ zIndex: 10 }}>
 
@@ -38,13 +56,13 @@ export const Hero: FC = () => {
                     className="home-hero-text oui-text-white oui-mb-6"
                     style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)", lineHeight: "1.1" }}
                 >
-                    TRADE <span style={{ color: "#403dff" }}>SHARP</span>.<br />
-                    EXECUTE <span style={{ color: "#403dff" }}>FAST</span>.
+                    TRADE <span className="home-hero-highlight">SHARP</span>.<br />
+                    EXECUTE <span className="home-hero-highlight">FAST</span>.
                 </h1>
 
                 <Text
                     className="home-sub-text oui-max-w-2xl oui-mb-10 oui-px-4"
-                    style={{ fontSize: "1.025rem", color: "rgba(255, 255, 255, 0.6)" }}
+                    style={{ fontSize: "1.025rem" }}
                 >
                     Modular infrastructure for professional traders. <br className="oui-hidden md:oui-block" />
                     Bespoke liquidation engine. Institutional depth.

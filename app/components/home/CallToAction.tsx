@@ -1,30 +1,47 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Flex, Text } from "@orderly.network/ui";
-import { PixelGrid } from "@/components/ui/pixel-grid";
+import { GridPattern, genRandomPattern } from "@/components/ui/grid-pattern";
 
 export const CallToAction: FC = () => {
     const navigate = useNavigate();
+    // Use a dense pattern for the CTA to make it feel solid/substantial
+    const pattern = useMemo(() => genRandomPattern(40), []);
 
     return (
         <section className="oui-w-full oui-px-6 md:oui-px-0">
             <div className="home-cta-card oui-max-w-4xl oui-mx-auto oui-relative oui-overflow-hidden">
-                {/* Pixel Grid Background with edge fade */}
+                {/* Modular Grid Background */}
                 <div
                     className="oui-absolute oui-inset-0"
                     style={{
                         zIndex: 0,
-                        maskImage: "radial-gradient(ellipse at center, black 30%, transparent 80%)",
-                        WebkitMaskImage: "radial-gradient(ellipse at center, black 30%, transparent 80%)",
+                        opacity: 0.4
                     }}
                 >
-                    <PixelGrid
-                        pixelColor="#403dff"
-                        pixelSize={2}
-                        pixelSpacing={12}
-                        glow={true}
+                    <GridPattern
+                        width={30}
+                        height={30}
+                        x="-1"
+                        y="-1"
+                        squares={pattern}
+                        className="oui-absolute oui-inset-0 oui-h-full oui-w-full"
+                        style={{
+                            fill: "rgba(64, 61, 255, 0.12)",
+                            stroke: "rgba(255, 255, 255, 0.05)",
+                            strokeWidth: 1
+                        }}
                     />
                 </div>
+
+                {/* Subtle radial overlay for depth */}
+                <div
+                    className="oui-absolute oui-inset-0"
+                    style={{
+                        background: "radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.6) 100%)",
+                        zIndex: 0
+                    }}
+                />
 
                 <Flex direction="column" itemAlign="center" gap={8} className="oui-text-center oui-relative" style={{ zIndex: 1 }}>
                     <Text
@@ -32,7 +49,7 @@ export const CallToAction: FC = () => {
                         style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", lineHeight: "1.1" }}
                     >
                         READY FOR <br />
-                        <span style={{ color: "#403dff" }}>THE INFINITE?</span>
+                        <span className="home-hero-highlight">THE INFINITE?</span>
                     </Text>
 
                     <Text
