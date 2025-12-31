@@ -94,8 +94,9 @@
   /* Faded to match title color */
 }
 
-/* Connect Wallet Modal - ensure proper width */
-div[role="dialog"].oui-w-\[300px\] {
+/* Connect Wallet Modal - ensure proper width on desktop */
+div[role="dialog"].oui-w-\[300px\],
+div[role="dialog"].oui-w-\[280px\] {
   width: 380px !important;
   min-width: 380px !important;
   max-width: 420px !important;
@@ -105,7 +106,8 @@ div[role="dialog"].oui-w-\[300px\] {
 @media (max-width: 768px) {
 
   /* Connect Wallet Modal on mobile - full width bottom sheet */
-  div[role="dialog"].oui-w-\[300px\] {
+  div[role="dialog"].oui-w-\[300px\],
+  div[role="dialog"].oui-w-\[280px\] {
     width: 100% !important;
     min-width: 100% !important;
     max-width: 100% !important;
@@ -121,6 +123,7 @@ div[role="dialog"].oui-w-\[300px\] {
     padding: 16px !important;
     border-radius: 16px 16px 0 0 !important;
     overflow: auto !important;
+    inset: auto 0 0 0 !important;
   }
 
   div[role="dialog"]:not([class*="oui-w-"]),
