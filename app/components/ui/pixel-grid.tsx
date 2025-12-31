@@ -63,9 +63,16 @@ export function PixelGrid({
         const resizeCanvas = () => {
             const width = parent?.clientWidth ?? window.innerWidth
             const height = parent?.clientHeight ?? window.innerHeight
-            canvas.width = width
-            canvas.height = height
-            initPixels()
+            const dpr = window.devicePixelRatio || 1
+            // Handle high DPI displays for crisp rendering, but be careful with performance on massive screens
+            // Capping max resolution might be smart if users report issues, but for now standard DPR handling:
+            canvas.width = width * dpr
+            canvas.height = height * dpr
+            canvas.style.width = `${width}px`
+            canvas.style.height = `${height}px`
+            c2d.scale(dpr, dpr)
+
+            initPixels(width, height)
         }
 
         const randomAlpha = () => {
@@ -104,9 +111,7 @@ export function PixelGrid({
         }
 
         // Initialize pixels dynamically based on container
-        const initPixels = () => {
-            const width = canvas.width
-            const height = canvas.height
+        const initPixels = (width: number, height: number) => {
             const cols = Math.ceil(width / (pixelSize + pixelSpacing))
             const rows = Math.ceil(height / (pixelSize + pixelSpacing))
             pixelsRef.current = []
@@ -118,17 +123,13 @@ export function PixelGrid({
         }
 
         resizeCanvas()
+        const resizeObserver = new ResizeObserver(() => resizeCanvas())
+        if (parent) resizeObserver.observe(parent)
         window.addEventListener("resize", resizeCanvas)
         setIsAppeared(true)
 
         const drawPixel = (pixel: Pixel) => {
-            pixel.alpha = Math.min(Math.max(pixel.alpha, 0.1), pixel.maxAlpha)
-            c2d.fillStyle = `${pixelColor}${Math.floor(pixel.alpha * 255)
-                .toString(16)
-                .padStart(2, "0")}`
-
-            c2d.fillRect(pixel.xPos, pixel.yPos, pixelSize, pixelSize)
-
+            // Update state logic
             if (pixel.isLit) {
                 if (pixel.bornFade <= 0) {
                     if (pixel.life <= 0) {
@@ -147,11 +148,22 @@ export function PixelGrid({
                 if (pixel.offLife <= 0) pixel.isLit = true
                 pixel.offLife--
             }
+
+            // Draw logic
+            // Clamp alpha
+            const currentAlpha = Math.min(Math.max(pixel.alpha, 0), pixel.maxAlpha)
+
+            // Skip invisible pixels
+            if (currentAlpha <= 0.01) return
+
+            // Optimization: Use globalAlpha instead of parsing/creating color strings per pixel
+            c2d.globalAlpha = currentAlpha
+            c2d.fillRect(pixel.xPos, pixel.yPos, pixelSize, pixelSize)
         }
 
         let animationFrameId: number;
         let lastTimestamp = 0;
-        const fpsInterval = 1000 / 30; // 30 FPS is plenty for a background effect
+        const fpsInterval = 1000 / 30; // 30 FPS cap
 
         const renderLoop = (timestamp: number) => {
             animationFrameId = requestAnimationFrame(renderLoop);
@@ -161,26 +173,30 @@ export function PixelGrid({
 
             lastTimestamp = timestamp - (elapsed % fpsInterval);
 
-            if (bgColor === "transparent") c2d.clearRect(0, 0, canvas.width, canvas.height);
-            else {
+            // Clear canvas
+            c2d.clearRect(0, 0, canvas.width, canvas.height); // Use actual canvas dims to clear everything including scaled area
+
+            // If we have bgColor
+            if (bgColor !== "transparent") {
                 c2d.fillStyle = bgColor;
+                c2d.globalAlpha = 1;
                 c2d.fillRect(0, 0, canvas.width, canvas.height);
             }
 
-            if (glow) {
-                c2d.shadowBlur = 8;
-                c2d.shadowColor = pixelColor;
-            } else {
-                c2d.shadowBlur = 0;
-            }
+            // Set the constant fill color once per frame
+            c2d.fillStyle = pixelColor;
 
-            for (const pixel of pixelsRef.current) drawPixel(pixel);
+            // Draw all pixels
+            for (const pixel of pixelsRef.current) {
+                drawPixel(pixel);
+            }
         };
 
         animationFrameId = requestAnimationFrame(renderLoop);
 
         return () => {
             window.removeEventListener("resize", resizeCanvas);
+            if (parent) resizeObserver.unobserve(parent)
             cancelAnimationFrame(animationFrameId);
         };
     }, [
@@ -204,6 +220,7 @@ export function PixelGrid({
             style={{
                 display: "block",
                 backgroundColor: "transparent",
+                filter: glow ? `drop-shadow(0 0 8px ${pixelColor})` : "none" // CSS-based glow is much faster than canvas shadowBlur
             }}
         />
     )
