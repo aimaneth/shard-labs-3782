@@ -3,7 +3,7 @@ import { withBasePath } from "../../utils/base-path";
 import { getRuntimeConfig } from "../../utils/runtime-config";
 
 export const HomeFooter: FC = () => {
-    const twitterUrl = getRuntimeConfig('VITE_TWITTER_URL') || 'https://twitter.com/ShardDEX';
+    const twitterUrl = getRuntimeConfig('VITE_TWITTER_URL') || 'https://twitter.com/sharddex';
     const discordUrl = getRuntimeConfig('VITE_DISCORD_URL') || 'https://discord.gg/sharddex';
     return (
         <footer style={{
