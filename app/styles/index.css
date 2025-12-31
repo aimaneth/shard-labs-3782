@@ -74,13 +74,15 @@
 }
 
 /* Ensure NO ::before content on any table headers by default */
-.shard-markets-page .oui-table-thead-th .oui-inline-flex::before {
+.shard-markets-page .oui-table-thead-th .oui-inline-flex::before,
+.shard-markets-page .oui-table-thead-th .oui-inline-flex *::before {
   content: none !important;
 }
 
 /* Add logo ONLY to 24h volume (5th) and Open interest (6th) columns */
-.shard-markets-page .oui-table-thead-th:nth-child(5) .oui-inline-flex::before,
-.shard-markets-page .oui-table-thead-th:nth-child(6) .oui-inline-flex::before {
+/* Target ONLY the direct oui-inline-flex child of th, not nested elements */
+.shard-markets-page .oui-table-thead-th:nth-child(5)>.oui-inline-flex::before,
+.shard-markets-page .oui-table-thead-th:nth-child(6)>.oui-inline-flex::before {
   content: "" !important;
   display: inline-block;
   width: 12px;
