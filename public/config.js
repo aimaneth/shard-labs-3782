@@ -24,7 +24,7 @@ window.__RUNTIME_CONFIG__ = {
   "VITE_ENABLE_CAMPAIGNS": "false",
   "VITE_TELEGRAM_URL": "https://t.me/sharddex",
   "VITE_DISCORD_URL": "https://discord.gg/sharddex",
-  "VITE_TWITTER_URL": "https://twitter.com/ShardDEX",
+  "VITE_TWITTER_URL": "https://x.com/sharddex",
   "VITE_SEO_SITE_NAME": "Shard DEX",
   "VITE_SEO_SITE_DESCRIPTION": "Institutional-grade perpetual trading with lightning-fast execution, deep liquidity, and a sleek, professional interface. Experience high-performance trading with precision and security.",
   "VITE_SEO_SITE_URL": "https://shardperp.com",
