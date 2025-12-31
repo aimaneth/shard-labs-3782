@@ -48,6 +48,24 @@
   vertical-align: middle;
 }
 
+/* Markets Page - Replace Orderly logos with Shard logo on statistics titles */
+/* Target: 24h volume, Open interest, Assets (TVL) card headers */
+.shard-markets-page .oui-bg-base-9 .oui-text-base-contrast-36 .oui-gap-x-1>svg {
+  display: none !important;
+}
+
+.shard-markets-page .oui-bg-base-9 .oui-text-base-contrast-36 .oui-gap-x-1::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-image: url("/shard-logo-secondary.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-shrink: 0;
+}
+
 /* Connect Wallet Modal - ensure proper width */
 div[role="dialog"].oui-w-\[300px\] {
   width: 380px !important;
