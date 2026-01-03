@@ -55,6 +55,7 @@ const DEFAULT_ENABLED_MENUS = [
   { name: "Trading", href: "/perp", translationKey: "common.trading" },
   { name: "Portfolio", href: "/portfolio", translationKey: "common.portfolio" },
   { name: "Markets", href: "/markets", translationKey: "common.markets" },
+  { name: "Rewards", href: "/rewards", translationKey: "tradingRewards.rewards" },
   { name: "Swap", href: "/swap", translationKey: "extend.swap" },
   { name: "Leaderboard", href: "/leaderboard", translationKey: "tradingLeaderboard.leaderboard" },
 ];

@@ -174,3 +174,19 @@ div[role="dialog"] {
     border-radius: 2px;
   }
 }
+
+/* Affiliate Dashboard Refinements */
+.shard-affiliate-dashboard .oui-bg-base-9 {
+  background: rgba(13, 13, 18, 0.4) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.shard-affiliate-dashboard .oui-card {
+  background: rgba(255, 255, 255, 0.01) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.shard-affiliate-dashboard .oui-text-white {
+  font-family: 'Geist', sans-serif !important;
+}
