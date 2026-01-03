@@ -21,9 +21,14 @@ const chains = [
     { name: "Monad", logo: "https://icons.llamao.fi/icons/chains/rsz_monad.jpg" },
 ];
 
-// Split chains into two rows
-const row1 = chains.slice(0, 9);
-const row2 = chains.slice(9);
+// Row split for desktop (2 rows)
+const desktopRow1 = chains.slice(0, 11);
+const desktopRow2 = chains.slice(11);
+
+// Row split for mobile (3 rows)
+const mobileRow1 = chains.slice(0, 7);
+const mobileRow2 = chains.slice(7, 14);
+const mobileRow3 = chains.slice(14);
 
 export const SupportedChains: FC = () => {
     return (
@@ -47,32 +52,73 @@ export const SupportedChains: FC = () => {
                         letterSpacing: "0.2em",
                     }}
                 >
-                    17 Supported Chains
+                    {chains.length} Supported Chains
                 </span>
             </div>
 
-            {/* Marquee Row 1 - Scroll Left */}
-            <div className="chain-marquee-container">
-                <div
-                    className="chain-marquee-row"
-                    style={{ animation: "scroll-left 60s linear infinite" }}
-                >
-                    {/* Duplicate list 3 times for seamless loop */}
-                    {[...row1, ...row1, ...row1].map((chain, i) => (
-                        <ChainCard key={`${chain.name}-${i}`} chain={chain} />
-                    ))}
+            {/* DESKTOP VIEW (2 ROWS) */}
+            <div className="hidden md:block">
+                {/* Marquee Row 1 - Scroll Left */}
+                <div className="chain-marquee-container">
+                    <div
+                        className="chain-marquee-row"
+                        style={{ animation: "scroll-left 60s linear infinite" }}
+                    >
+                        {[...desktopRow1, ...desktopRow1, ...desktopRow1].map((chain, i) => (
+                            <ChainCard key={`desktop-row1-${chain.name}-${i}`} chain={chain} />
+                        ))}
+                    </div>
+                </div>
+
+                {/* Marquee Row 2 - Scroll Right */}
+                <div className="chain-marquee-container" style={{ marginTop: "-1rem" }}>
+                    <div
+                        className="chain-marquee-row"
+                        style={{ animation: "scroll-right 60s linear infinite" }}
+                    >
+                        {[...desktopRow2, ...desktopRow2, ...desktopRow2].map((chain, i) => (
+                            <ChainCard key={`desktop-row2-${chain.name}-${i}`} chain={chain} />
+                        ))}
+                    </div>
                 </div>
             </div>
 
-            {/* Marquee Row 2 - Scroll Right */}
-            <div className="chain-marquee-container" style={{ marginTop: "-1rem" }}>
-                <div
-                    className="chain-marquee-row"
-                    style={{ animation: "scroll-right 60s linear infinite" }}
-                >
-                    {[...row2, ...row2, ...row2, ...row2].map((chain, i) => (
-                        <ChainCard key={`${chain.name}-${i}`} chain={chain} />
-                    ))}
+            {/* MOBILE VIEW (3 ROWS) */}
+            <div className="block md:hidden">
+                {/* Marquee Row 1 - Scroll Left */}
+                <div className="chain-marquee-container">
+                    <div
+                        className="chain-marquee-row"
+                        style={{ animation: "scroll-left 60s linear infinite" }}
+                    >
+                        {[...mobileRow1, ...mobileRow1, ...mobileRow1].map((chain, i) => (
+                            <ChainCard key={`mobile-row1-${chain.name}-${i}`} chain={chain} />
+                        ))}
+                    </div>
+                </div>
+
+                {/* Marquee Row 2 - Scroll Right */}
+                <div className="chain-marquee-container">
+                    <div
+                        className="chain-marquee-row"
+                        style={{ animation: "scroll-right 60s linear infinite" }}
+                    >
+                        {[...mobileRow2, ...mobileRow2, ...mobileRow2].map((chain, i) => (
+                            <ChainCard key={`mobile-row2-${chain.name}-${i}`} chain={chain} />
+                        ))}
+                    </div>
+                </div>
+
+                {/* Marquee Row 3 - Scroll Left */}
+                <div className="chain-marquee-container">
+                    <div
+                        className="chain-marquee-row"
+                        style={{ animation: "scroll-left 60s linear infinite" }}
+                    >
+                        {[...mobileRow3, ...mobileRow3, ...mobileRow3].map((chain, i) => (
+                            <ChainCard key={`mobile-row3-${chain.name}-${i}`} chain={chain} />
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

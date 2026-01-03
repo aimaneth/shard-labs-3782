@@ -167,6 +167,25 @@
     .shard-home-page .home-stat-item:last-child {
         border-bottom: none;
     }
+
+    /* Reduce marquee gaps on mobile */
+    .chain-marquee-container {
+        padding: 0.25rem 0 !important;
+    }
+
+    .chain-marquee-row {
+        gap: 0.75rem !important;
+        /* Even tighter for better density */
+        padding: 0.25rem 0 !important;
+    }
+
+    .shard-home-page section:has(.chain-marquee-container) {
+        padding: 1.5rem 0 !important;
+    }
+
+    .shard-home-page section:has(.chain-marquee-container)>div:first-child {
+        margin-bottom: 1.5rem !important;
+    }
 }
 
 /* Features Grid */
