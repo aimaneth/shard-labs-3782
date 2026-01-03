@@ -94,13 +94,13 @@ export const HomeNavbar: FC<HomeNavbarProps> = ({ components, socials, menus, cu
                             <img
                                 src={withBasePath("/shard-logo-secondary.svg")}
                                 alt="logo"
-                                style={{ height: "24px", display: "block", width: "auto" }}
+                                style={{ height: "28px", display: "block", width: "auto" }}
                             />
                         ) : (
                             <img
                                 src={withBasePath("/shard.svg")}
                                 alt="logo"
-                                style={{ height: "28px", display: "block", width: "auto" }}
+                                style={{ height: "34px", display: "block", width: "auto" }}
                             />
                         )}
                     </Link>

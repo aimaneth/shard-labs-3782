@@ -256,7 +256,7 @@ export const useOrderlyConfig = () => {
               <img
                 src={isMobile ? withBasePath("/shard-logo-secondary.svg") : withBasePath("/shard.svg")}
                 alt="logo"
-                style={{ height: isMobile ? "24px" : "28px", width: "auto" }}
+                style={{ height: isMobile ? "28px" : "34px", width: "auto" }}
               />
             </Link>
 
@@ -315,8 +315,8 @@ export const useOrderlyConfig = () => {
           appIcons: {
             main:
               getRuntimeConfigBoolean('VITE_HAS_PRIMARY_LOGO')
-                ? { component: <img src={withBasePath("/logo.webp")} alt="logo" style={{ height: "42px", display: "block", width: "auto" }} /> }
-                : { component: <img src={withBasePath("/shard.svg")} alt="logo" style={{ height: "36px", display: "block", width: "auto" }} /> },
+                ? { component: <img src={withBasePath("/logo.webp")} alt="logo" style={{ height: "48px", display: "block", width: "auto" }} /> }
+                : { component: <img src={withBasePath("/shard.svg")} alt="logo" style={{ height: "42px", display: "block", width: "auto" }} /> },
             secondary: {
               img: getRuntimeConfigBoolean('VITE_HAS_SECONDARY_LOGO')
                 ? withBasePath("/logo-secondary.webp")
@@ -362,8 +362,8 @@ export const useOrderlyConfig = () => {
         appIcons: {
           main:
             getRuntimeConfigBoolean('VITE_HAS_PRIMARY_LOGO')
-              ? { component: <img src={withBasePath("/logo.webp")} alt="logo" style={{ height: "42px", display: "block", width: "auto" }} /> }
-              : { component: <img src={withBasePath("/shard.svg")} alt="logo" style={{ height: "36px", display: "block", width: "auto" }} /> },
+              ? { component: <img src={withBasePath("/logo.webp")} alt="logo" style={{ height: "48px", display: "block", width: "auto" }} /> }
+              : { component: <img src={withBasePath("/shard.svg")} alt="logo" style={{ height: "42px", display: "block", width: "auto" }} /> },
           secondary: {
             img: getRuntimeConfigBoolean('VITE_HAS_SECONDARY_LOGO')
               ? withBasePath("/logo-secondary.webp")
