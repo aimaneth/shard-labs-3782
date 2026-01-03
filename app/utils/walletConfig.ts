@@ -34,7 +34,7 @@ export const getEvmConnectors = (): CreateConnectorFn[] => {
     connectors.push(
       walletConnect({
         projectId: walletConnectProjectId,
-        showQrModal: false,
+        showQrModal: true,
         metadata: {
           name: getRuntimeConfig("VITE_APP_NAME") || "Orderly App",
           description:

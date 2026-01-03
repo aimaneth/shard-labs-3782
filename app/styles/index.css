@@ -104,8 +104,36 @@ div[role="dialog"].oui-w-\[280px\] {
   max-width: 420px !important;
 }
 
+/* All dialog modals - override Orderly's restrictive max-width */
+.oui-dialog-content,
+div[role="dialog"] {
+  min-width: 500px !important;
+  max-width: 700px !important;
+}
+
+/* Specifically override the oui-max-w-lg class that limits to 512px */
+.oui-dialog-content.oui-max-w-lg {
+  max-width: 700px !important;
+}
+
+
 /* Fix all dialogs/modals on mobile (Scan QR, Switch Network, etc.) */
 @media (max-width: 768px) {
+
+  /* All dialogs on mobile - responsive with max width */
+  .oui-dialog-content,
+  div[role="dialog"] {
+    min-width: 320px !important;
+    width: calc(100vw - 32px) !important;
+    max-width: calc(100vw - 32px) !important;
+    max-height: 90vh !important;
+    margin: 0 auto !important;
+    overflow-y: auto !important;
+
+    /* Thin scrollbar */
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent !important;
+  }
 
   /* Connect Wallet Modal on mobile - full width bottom sheet */
   div[role="dialog"].oui-w-\[300px\],
@@ -126,32 +154,6 @@ div[role="dialog"].oui-w-\[280px\] {
     border-radius: 16px 16px 0 0 !important;
     overflow: auto !important;
     inset: auto 0 0 0 !important;
-  }
-
-  div[role="dialog"]:not([class*="oui-w-"]),
-  .oui-dialog-content,
-  [class*="dialog-content"],
-  [class*="modal-content"] {
-    width: 100% !important;
-    min-width: 100% !important;
-    max-width: 100% !important;
-    height: auto !important;
-    min-height: auto !important;
-    max-height: 80vh !important;
-    left: 0 !important;
-    right: 0 !important;
-    top: auto !important;
-    bottom: 0 !important;
-    transform: none !important;
-    position: fixed !important;
-    margin: 0 !important;
-    padding: 16px !important;
-    border-radius: 16px 16px 0 0 !important;
-    overflow: auto !important;
-
-    /* Thin scrollbar */
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
   }
 
   /* Webkit thin scrollbar for dialogs */

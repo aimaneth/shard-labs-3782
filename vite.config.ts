@@ -57,7 +57,7 @@ export default defineConfig(() => {
           process: true,
           global: true,
         },
-        include: ["buffer", "crypto", "stream"],
+        include: ["buffer", "crypto", "stream", "http", "https", "url", "zlib"],
       }),
     ],
     build: {
