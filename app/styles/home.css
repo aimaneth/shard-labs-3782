@@ -43,6 +43,16 @@
     opacity: 0 !important;
 }
 
+/* Hide default top navbar on home page to prevent overlap / chevrons showing behind portal */
+.shard-home-page-body .oui-scaffold-topNavbar,
+.shard-home-page-body [class*="scaffold-topNavbar"],
+.shard-home-page-body header:has(.oui-logo) {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+
 /* Typography */
 .shard-home-page .home-hero-text {
     font-weight: 800;
@@ -60,21 +70,7 @@
     /* Gentle glow without heavy filters */
 }
 
-/* Home Navbar Links Override */
-.shard-home-page .home-nav-links a {
-    color: rgba(255, 255, 255, 0.6) !important;
-    font-size: 0.9375rem;
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    transition: all 0.2s ease;
-}
-
-.shard-home-page .home-nav-links a:hover,
-.shard-home-page .home-nav-links a.oui-text-primary {
-    color: white !important;
-    background: rgba(255, 255, 255, 0.05);
-}
+/* Home Navbar Alignment Fix - Handled via Flex gaps in TSX */
 
 
 /* Hero Radial Glow */

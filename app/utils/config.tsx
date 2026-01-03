@@ -249,7 +249,7 @@ export const useOrderlyConfig = () => {
             className="oui-gap-2 md:oui-gap-4"
           >
             {/* Burger Menu for Mobile Trade Pages */}
-            {isMobile && !isHomePage && components.mobileNav}
+            {isMobile && !isHomePage && (components as any).mobileNav}
 
             {/* Logo linked to Home */}
             <Link to="/" className="oui-flex-shrink-0 oui-flex oui-items-center">
@@ -287,6 +287,7 @@ export const useOrderlyConfig = () => {
         scaffold: {
           mainNavProps: {
             ...mainNavProps,
+            initialMenu: location.pathname, // Prevent any item from being active on Home
             // Force minimal navbar for Home
             customRender: (components) => (
               <HomeNavbar
@@ -303,8 +304,12 @@ export const useOrderlyConfig = () => {
           },
           // HIDE Mobile Nav on Home
           bottomNavProps: undefined,
-          // Disable Scaffold Footer entirely to prevent fixed positioning and sticky lines
-          footerProps: undefined,
+          // Provide empty footerProps to satisfy type requirement
+          footerProps: {
+            telegramUrl: undefined,
+            discordUrl: undefined,
+            twitterUrl: undefined,
+          },
         },
         orderlyAppProvider: {
           appIcons: {

@@ -11,6 +11,8 @@ import SupportedChains from "@/components/home/SupportedChains";
 import CallToAction from "@/components/home/CallToAction";
 import ProductShowcase from "@/components/home/ProductShowcase";
 import HomeFooter from "@/components/home/HomeFooter";
+import { HomeNavbar } from "@/components/home/HomeNavbar";
+import { getRuntimeConfig } from "@/utils/runtime-config";
 
 import "@/styles/home.css";
 
@@ -30,6 +32,16 @@ export default function Index() {
       }}
       bottomNavProps={config.scaffold.bottomNavProps}
     >
+      <HomeNavbar
+        components={{}}
+        menus={(config.scaffold.mainNavProps as any)?.mainMenus || []}
+        customMenus={[]}
+        socials={{
+          twitter: getRuntimeConfig('VITE_TWITTER_URL'),
+          discord: getRuntimeConfig('VITE_DISCORD_URL'),
+          telegram: getRuntimeConfig('VITE_TELEGRAM_URL'),
+        }}
+      />
       <div className="oui-min-h-screen oui-bg-base-10 oui-overflow-x-hidden shard-home-page">
         <main className="oui-max-w-6xl oui-mx-auto oui-px-6 md:oui-px-20">
           <Hero />
