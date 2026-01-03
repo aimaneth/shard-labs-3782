@@ -5,7 +5,6 @@ import { getRuntimeConfig, getRuntimeConfigBoolean } from "@/utils/runtime-confi
 import { renderSEOTags } from "@/utils/seo-tags";
 import { useNavigate } from "react-router-dom";
 import { withBasePath } from "@/utils/base-path";
-import { MarketsBanner } from "@/components/MarketsBanner";
 
 export default function MarketsIndex() {
   const pageMeta = getPageMeta();
@@ -15,8 +14,7 @@ export default function MarketsIndex() {
   return (
     <>
       {renderSEOTags(pageMeta, pageTitle)}
-      <div className="shard-markets-page oui-px-4 md:oui-px-8 oui-py-6">
-        <MarketsBanner />
+      <div className="shard-markets-page">
         <MarketsHomePage
           comparisonProps={{
             exchangesIconSrc:
