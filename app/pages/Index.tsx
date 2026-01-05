@@ -25,12 +25,12 @@ export default function Index() {
   return (
     <Scaffold
       mainNavProps={config.scaffold.mainNavProps}
-      footerProps={config.scaffold.footerProps}
+      {...(config.scaffold.footerProps && { footerProps: config.scaffold.footerProps })}
       routerAdapter={{
         onRouteChange,
         currentPath: "/",
       }}
-      bottomNavProps={config.scaffold.bottomNavProps}
+      {...(config.scaffold.bottomNavProps && { bottomNavProps: config.scaffold.bottomNavProps })}
     >
       <HomeNavbar
         components={{}}
